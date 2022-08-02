@@ -40,9 +40,21 @@ function App() {
           //eslint-disable-next-line
         }, [searchQuery])
 
+
+        useEffect(() => {
+          const  retrieveFavourite = JSON.parse(localStorage.getItem(('favourite-lists')));
+
+          updateFavourites(retrieveFavourite)
+        }, [])
+
+        const addToLocalStorage = (item) => {
+          localStorage.setItem('favourite-lists', JSON.stringify(item))
+        }
+
         const addFavourite = (movie) => {
           const movieToAdd = [...favourites, movie]
           updateFavourites(movieToAdd)
+          addToLocalStorage(movieToAdd)
          
 
         }
@@ -51,6 +63,8 @@ function App() {
           const filtered = favourites.filter((favourite) => favourite.imdbID !== movie.imdbID)
 
           updateFavourites(filtered)
+          addToLocalStorage(filtered)
+          
         }
   return (
     <div className='container movie__app'>
