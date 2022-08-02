@@ -1,0 +1,70 @@
+body{
+  background-color: #141414;
+  color: #fff;
+}
+
+.container-fluid{
+  
+  
+}
+
+img{
+  width: 210px;
+  height: 250px;
+}
+
+.movie__app > .row{
+  display: flex;
+    flex-wrap: nowrap;
+  /* overflow-x: auto; */
+  
+}
+
+.list__movie{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.header__row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.image__container{
+  position: relative;
+  transition: transform 0.2s;
+
+}
+
+.image__container:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.image__container:hover .overlay{
+  opacity: 1;
+}
+
+.overlay{
+  
+  position: absolute;
+  display: flex;
+  
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  width: 100%;
+  bottom: 0;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+  
+  
+}
+
+.add{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.4rem;
+}
