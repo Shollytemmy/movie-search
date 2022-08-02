@@ -4,12 +4,13 @@ import './App.css';
 import { SearchBar } from './SearchBar';
 import Header from './components/Header';
 import AddToFavourite from './components/AddToFavourite';
+import RemoveFavorite from './components/RemoveFavorite';
 
 
 function App() {
   const [movies, updateMovies] = useState([])
   const [searchQuery, updateSearchQuery] = useState('')
-  const [favourite, updateFavourite] = useState([])
+  const [favourites, updateFavourites] = useState([])
   // console.log('Array',favourite)
 
         // const base_Url = "http://www.omdbapi.com"
@@ -40,10 +41,16 @@ function App() {
         }, [searchQuery])
 
         const addFavourite = (movie) => {
-          const movieToAdd = [...favourite, movie]
-          updateFavourite(movieToAdd)
+          const movieToAdd = [...favourites, movie]
+          updateFavourites(movieToAdd)
          
 
+        }
+
+        const removeFavourite = (movie) => {
+          const filtered = favourites.filter((favourite) => favourite.imdbID !== movie.imdbID)
+
+          updateFavourites(filtered)
         }
   return (
     <div className='container movie__app'>
@@ -69,9 +76,9 @@ function App() {
          <div className='row'>
 
          <MovieList
-          movies={favourite} 
-          AddFavourite = {AddToFavourite}
-          handleFavourite = {addFavourite}
+          movies={favourites} 
+          AddFavourite = {RemoveFavorite}
+          handleFavourite = {removeFavourite}
           /> 
       </div>
       
