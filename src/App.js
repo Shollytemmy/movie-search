@@ -9,6 +9,8 @@ import AddToFavourite from './components/AddToFavourite';
 function App() {
   const [movies, updateMovies] = useState([])
   const [searchQuery, updateSearchQuery] = useState('')
+  const [favourite, updateFavourite] = useState([])
+  // console.log('Array',favourite)
 
         // const base_Url = "http://www.omdbapi.com"
         
@@ -25,14 +27,7 @@ function App() {
               updateMovies(resJson.Search)
 
             }
-            
-
-            
-            
-            console.log(resJson)
-            
-
-            
+         
           } catch (error) {
             console.log(error)
           }
@@ -43,6 +38,13 @@ function App() {
           getMovies(searchQuery)
           //eslint-disable-next-line
         }, [searchQuery])
+
+        const addFavourite = (movie) => {
+          const movieToAdd = [...favourite, movie]
+          updateFavourite(movieToAdd)
+         
+
+        }
   return (
     <div className='container movie__app'>
       <div className="header__row">
@@ -53,10 +55,24 @@ function App() {
       
       <div className='row'>
 
-         <MovieList movies={movies} AddFavourite = {AddToFavourite}/>
+         <MovieList
+          movies={movies} 
+          AddFavourite = {AddToFavourite}
+          handleFavourite = {addFavourite}
+          /> 
+      </div>
 
+      <div className="header__row">
+        <Header header='Favourites' />
+        </div>
 
-        
+         <div className='row'>
+
+         <MovieList
+          movies={favourite} 
+          AddFavourite = {AddToFavourite}
+          handleFavourite = {addFavourite}
+          /> 
       </div>
       
      
